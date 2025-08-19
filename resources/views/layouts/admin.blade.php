@@ -29,7 +29,7 @@
 >
 <div class="flex min-h-screen">
 
-    <!-- Sidebar -->
+    <!-- Sidebarsssss -->
     <aside
         :class="open ? 'w-64' : 'w-16'"
         :class="darkMode ? 'bg-gray-800 text-gray-200' : 'bg-white text-gray-800'"
