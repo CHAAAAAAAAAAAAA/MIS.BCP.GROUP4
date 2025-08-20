@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Validation\Rule;
 
 use Psy\TabCompletion\Matcher\FunctionsMatcher;
@@ -358,6 +359,13 @@ class StudentController extends Controller
 
 
 
+    public function downloadPdf($id)
+    {
+        $student = User::findOrFail($id);
+        $pdf = Pdf::loadView('admin.students.summary-pdf', compact('student'));
+
+        return $pdf->download("student_{$student->id}_summary.pdf");
+    }
 
 
 }

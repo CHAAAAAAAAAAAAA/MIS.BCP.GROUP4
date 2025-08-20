@@ -38,36 +38,24 @@
         <!-- Sidebar Header -->
         <div
             :class="darkMode ? 'border-gray-700' : 'border-gray-200'"
-            class="flex items-center justify-between px-4 py-3 border-b"
+            class="flex justify-center items-center px-4 py-6 border-b"
         >
-            <div class="flex items-center space-x-2" x-show="open" x-transition>
-                <a href="#">
-                    <x-application-logo
-                        :class="darkMode ? 'text-gray-300' : 'text-gray-700'"
-                        class="h-10 w-auto"
-                    />
-                </a>
+            <div class="flex flex-col items-center space-y-2" x-show="open" x-transition>
+                
+
+                <!-- Initials Logo -->
+                <div class="w-10 h-10 rounded-full bg-slate-700 text-white flex items-center justify-center text-sm font-bold">
+                    CL
+                </div>
+
+                <!-- Name -->
                 <span
                     :class="darkMode ? 'text-white' : 'text-gray-900'"
                     class="text-xl font-bold"
-                >ADMIN</span>
-            </div>
-            <button @click="open = !open" class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    :class="darkMode ? 'text-gray-300' : 'text-gray-600'"
                 >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                    />
-                </svg>
-            </button>
+                    Charlie Llorico
+                </span>
+            </div>
         </div>
 
         <!-- Sidebar Links -->
@@ -78,8 +66,23 @@
                 :class="darkMode ? 'hover:bg-gray-700 text-gray-300' : 'hover:bg-gray-100 text-gray-800'"
                 class="flex items-center px-4 py-3 rounded-lg transition"
             >
-                <span class="text-lg">🏠</span>
-                <span x-show="open" x-transition class="ml-2 font-medium">Home</span>
+                <div class="flex items-center space-x-2">
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor" 
+                        class="h-6 w-6 text-gray-700"
+                        focusable="false"
+                    >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                    </svg>
+
+                    <span x-show="open" x-transition class="text-sm text-gray-700 font-medium">
+                        Dashboard
+                    </span>
+                </div>
             </a>
 
             <hr :class="darkMode ? 'border-gray-700' : 'border-gray-200'" />
@@ -92,8 +95,15 @@
                     class="w-full flex items-center justify-between px-4 py-3 rounded-lg transition"
                 >
                     <div class="flex items-center">
-                        <span class="text-lg">🎓</span>
-                        <span x-show="open" x-transition class="ml-2">User Management</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            class="w-6 h-6 text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20h6v-2a4 4 0 00-4-4H9m0 0a4 4 0 100-8 4 4 0 000 8zm6 0a4 4 0 100-8 4 4 0 000 8z" />
+                        </svg>
+                        <span x-show="open" x-transition class="ml-2 text-sm text-gray-700">User Management</span>
                     </div>
                     <svg
                         :class="{ 'rotate-180': openMenu }"
@@ -136,8 +146,15 @@
                     class="w-full flex items-center justify-between px-4 py-3 rounded-lg transition"
                 >
                     <div class="flex items-center">
-                        <span class="text-lg">👨‍🏫</span>
-                        <span x-show="open" x-transition class="ml-2">Teacher</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            class="w-6 h-6 text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 10h16M4 14h10M4 18h6" />
+                        </svg>
+                        <span x-show="open" x-transition class="ml-2 text-sm text-gray-700">Teacher</span>
                     </div>
                     <svg
                         :class="{ 'rotate-180': openMenu }"
@@ -174,8 +191,15 @@
                     class="w-full flex items-center justify-between px-4 py-3 rounded-lg transition"
                 >
                     <div class="flex items-center">
-                        <span class="text-lg">📝</span>
-                        <span x-show="open" x-transition class="ml-2">Student Concern</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            class="w-6 h-6 text-gray-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+                        </svg>
+                        <span x-show="open" x-transition class="ml-2 text-sm text-gray-700">Student Concern</span>
                     </div>
                     <svg
                         :class="{ 'rotate-180': openMenu }"
@@ -195,12 +219,6 @@
                         class="block px-4 py-2 rounded-lg transition"
                         >Concerns</a
                     >
-                    <a
-                        href="{{ route('admin.dashboard') }}"
-                        :class="darkMode ? 'hover:bg-gray-700 text-gray-300' : 'hover:bg-gray-100 text-gray-800'"
-                        class="block px-4 py-2 rounded-lg transition"
-                        >Modules</a
-                    >
                 </div>
             </div>
 
@@ -212,8 +230,18 @@
                     class="w-full flex items-center justify-between px-4 py-3 rounded-lg transition"
                 >
                     <div class="flex items-center">
-                        <span class="text-lg">💰</span>
-                        <span x-show="open" x-transition class="ml-2">General Ledger</span>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            class="w-6 h-6 text-gray-600">
+                            <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                            <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222">
+                            </path>
+                        </svg>
+                        <span x-show="open" x-transition class="ml-2 text-sm text-gray-700">General Ledger</span>
                     </div>
                     <svg
                         :class="{ 'rotate-180': openMenu }"
@@ -228,10 +256,10 @@
                 </button>
                 <div x-show="openMenu" x-transition class="pl-6 mt-2 space-y-2">
                     <a
-                        href="{{ route('admin.dashboard') }}"
+                        href="{{ route('admin.transactions') }}"
                         :class="darkMode ? 'hover:bg-gray-700 text-gray-300' : 'hover:bg-gray-100 text-gray-800'"
                         class="block px-4 py-2 rounded-lg transition"
-                        >Transactions</a
+                        >Transaction</a
                     >
                     <a
                         href="{{ route('admin.dashboard') }}"

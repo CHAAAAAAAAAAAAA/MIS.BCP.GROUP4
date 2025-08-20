@@ -16,7 +16,7 @@
     {{-- 🔹 Welcome Card --}}
     <div class="bg-gradient-to-r from-slate-800 to-slate-700 shadow-md rounded-xl p-6 mb-6">
         <h3 class="text-2xl font-bold text-white">
-            Welcome, Admin {{ Auth::user()->name }}! 🏆
+            Welcome, Admin {{ Auth::user()->name }}!
         </h3>
         <p class="mt-2 text-slate-300 text-sm">
             You have full access to manage users, monitor activities, and configure the system.
@@ -27,10 +27,26 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         @php
             $stats = [
-                ['label' => 'Students', 'count' => $studentCount + $sstudentCount, 'icon' => 'M17 20h5v-2a3...'],
-                ['label' => 'Teachers', 'count' => $teacherCount, 'icon' => 'M12 14l9-5-9-5-9 5 9 5zm0 0v7'],
-                ['label' => 'Admin', 'count' => $adminCount, 'icon' => 'M12 11c1.657...'],
-                ['label' => 'All Person', 'count' => $allpersonCount, 'icon' => 'M12 11c1.657...'],
+                [
+                    'label' => 'Students',
+                    'count' => $studentCount + $sstudentCount,
+                    'icon' => 'M17 20h5v-2a3 3 0 00-3-3h-4a3 3 0 00-3 3v2h5z M12 12a4 4 0 100-8 4 4 0 000 8z'
+                ],
+                [
+                    'label' => 'Teachers',
+                    'count' => $teacherCount,
+                    'icon' => 'M12 14l9-5-9-5-9 5 9 5zm0 0v7'
+                ],
+                [
+                    'label' => 'Admin',
+                    'count' => $adminCount,
+                    'icon' => 'M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5s-3 1.343-3 3 1.343 3 3 3z M6 20v-2a4 4 0 014-4h4a4 4 0 014 4v2'
+                ],
+                [
+                    'label' => 'All Person',
+                    'count' => $allpersonCount,
+                    'icon' => 'M5.121 17.804A4 4 0 019 16h6a4 4 0 013.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z'
+                ],
             ];
         @endphp
 

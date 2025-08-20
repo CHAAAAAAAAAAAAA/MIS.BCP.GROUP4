@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Psy\TabCompletion\Matcher\FunctionsMatcher;
 
 class StudentController extends Controller
@@ -252,6 +253,14 @@ class StudentController extends Controller
         $users = $query->get();
 
         return view('admin.dashboard', compact('users'));
+    }
+
+    public function downloadPdf($id)
+    {
+        $student = User::findOrFail($id);
+        $pdf = Pdf::loadView('admin.students.summary-pdf', compact('student'));
+
+        return $pdf->download("student_{$student->id}_summary.pdf");
     }
 
 }

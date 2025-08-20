@@ -5,12 +5,11 @@
         </h2>
     </x-slot>
 
-    <div class="p-6 rounded-lg bg-white dark:bg-gray-800 transition">
+    <div class="max-w-6xl mx-auto mt-6 bg-white p-6 rounded-lg shadow-md">
         <div class="mb-6">
-            <h3 class="text-gray-900 dark:text-white">
+            <h3 class="text-lg font-semibold text-gray-800 bg-white px-6 py-4 border-b">
                 List of College Students (Grouped by Program & Section)
             </h3>
-            <p class="text-gray-700 dark:text-gray-300">This text follows dark mode</p>
         </div>
 
         <!-- Search Bar -->
@@ -63,11 +62,14 @@
                                         <!-- Action Buttons -->
                                         <td class="px-3 py-2 text-center flex items-center justify-center gap-2">
                                             <!-- View -->
-                                            <button onclick="secureView('{{ $user->id }}', '{{ $user->student_number }}', '{{ $user->name }}', '{{ $user->year_level }}', '{{ \Carbon\Carbon::parse($user->dob)->format('F j, Y') }}', '{{ $user->gender }}', '{{ $user->email }}')" 
+                                            <button onclick="secureView('{{ $user->id }}', '{{ $user->student_number }}', '{{ $user->name }}', '{{ $user->year_level }}', '{{ \Carbon\Carbon::parse($user->dob)->format('F j, Y') }}', '{{ $user->gender }}', '{{ $user->email }}', '{{ $user->semester }}')" 
                                                     class="text-blue-600 hover:text-blue-800" title="View Student">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7
+                                                            -1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                                 </svg>
                                             </button>
 
@@ -75,7 +77,10 @@
                                             <button onclick="secureEdit('{{ route('admin.students.edit', $user->id) }}')" 
                                                     class="text-yellow-600 hover:text-yellow-700" title="Edit Student">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                        d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5
+                                                            M18.5 2.5a2.121 2.121 0 113 3L12 15l-4 1 1-4
+                                                            9.5-9.5z" />
                                                 </svg>
                                             </button>
 
@@ -86,7 +91,10 @@
                                                 <button type="button" onclick="secureDelete(this)" 
                                                         class="text-red-600 hover:text-red-700" title="Delete Student">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7h6m2 0a2 2 0 00-2-2H9a2 2 0 00-2 2h10z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862
+                                                                a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6
+                                                                M9 7h6m2 0a2 2 0 00-2-2H9a2 2 0 00-2 2h10z" />
                                                     </svg>
                                                 </button>
                                             </form>
@@ -108,11 +116,12 @@
 
         function askPassword(action, onSuccess) {
             Swal.fire({
-                title: `Enter Password to ${action}`,
+                title: `<h2 style="font-size:22px; font-weight:bold;">Enter Password to ${action}</h2>`,
                 input: 'password',
                 inputPlaceholder: 'Enter password',
                 showCancelButton: true,
                 confirmButtonText: 'Continue',
+                cancelButtonText: 'Cancel',
                 preConfirm: (pw) => {
                     if (pw !== ADMIN_PASS) Swal.showValidationMessage('❌ Incorrect password');
                     return pw;
@@ -124,32 +133,74 @@
             });
         }
 
-        function secureView(id, student_number, name, year_level, dob, gender, email) {
+        function secureView(id, student_number, name, year_level, dob, gender, email, semester) {
             askPassword("View", () => {
                 Swal.fire({
-                    title: "📖 Student Details",
+                    title: `<h2 style="font-size:22px; font-weight:bold; margin-bottom:15px;">Student Profile</h2>`,
                     html: `
-                        <div class="text-left">
-                            <p><b>🆔 Student Number:</b> ${student_number}</p>
-                            <p><b>👤 Name:</b> ${name}</p>
-                            <p><b>🚻 Gender:</b> ${gender}</p>
-                            <p><b>📘 Year Level:</b> ${year_level}</p>
-                            <p><b>🎂 Date of Birth:</b> ${dob}</p>
-                            <p><b>📧 Email:</b> ${email}</p>
+                        <div style="text-align:left; font-size:16px; line-height:1.6;">
+                            <table style="width:100%; border-collapse: collapse; font-size:16px;">
+                                <tr>
+                                    <td style="padding:10px; font-weight:bold; width:40%;">Student Number:</td>
+                                    <td style="padding:10px;">${student_number}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Name:</td>
+                                    <td style="padding:10px;">${name}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:10px; font-weight:bold;">Gender:</td>
+                                    <td style="padding:10px;">${gender}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Year Level:</td>
+                                    <td style="padding:10px;">${year_level}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:10px; font-weight:bold;">Date of Birth:</td>
+                                    <td style="padding:10px;">${dob}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Email:</td>
+                                    <td style="padding:10px;">${email}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Semester:</td>
+                                    <td style="padding:10px;">${semester}</td>
+                                </tr>
+                            </table>
                         </div>
                     `,
+                    width: 700, // bigger modal
+                    padding: "2rem",
                     confirmButtonText: "Close",
-                    width: 500
+                    confirmButtonColor: "#2563eb", // Tailwind blue-600
                 });
             });
         }
 
         function secureEdit(url) {
-            askPassword("Edit", () => window.location.href = url);
+            askPassword("Edit", () => {
+                window.location.href = url;
+            });
         }
 
         function secureDelete(button) {
-            askPassword("Delete", () => button.closest("form").submit());
+            askPassword("Delete", () => {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "This action cannot be undone.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        button.closest("form").submit();
+                    }
+                });
+            });
         }
     </script>
 </x-admin-layout>

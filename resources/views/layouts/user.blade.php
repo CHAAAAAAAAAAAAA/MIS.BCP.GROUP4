@@ -44,7 +44,7 @@
                         :class="darkMode ? 'text-white' : 'text-gray-900'"
                         class="text-2xl font-extrabold tracking-wide"
                     >
-                        USER
+                        {{ Auth::user()->name }}
                     </span>
                 </div>
 

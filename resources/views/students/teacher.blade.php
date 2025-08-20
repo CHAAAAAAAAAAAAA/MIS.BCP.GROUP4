@@ -30,7 +30,7 @@
                             </label>
 
                             <!-- Search Input -->
-                            <input type="text" id="search" name="search" placeholder="Name or Student Number"
+                            <input type="text" id="search" name="search" placeholder="Name or Tearchers ID Number"
                                 value="{{ request('search') }}"
                                 class="flex-1 min-w-[200px] px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
 

@@ -8,7 +8,7 @@
     <div class="max-w-6xl mx-auto mt-6 bg-white p-6 rounded-lg shadow-md">
         <div class="mb-6">
             <h3 class="text-lg font-semibold text-gray-800 bg-white px-6 py-4 border-b">
-                📚 List of Senior High School Students (Grouped by Program & Section)
+                List of Senior High School Students (Grouped by Program & Section)
             </h3>
         </div>
 
@@ -60,7 +60,7 @@
                                         <!-- Action Buttons -->
                                         <td class="px-3 py-2 text-center flex items-center justify-center gap-2">
                                             <!-- View -->
-                                            <button onclick="secureView({{ $user->id }}, '{{ $user->name }}', '{{ $user->student_number }}', '{{ $user->year_level }}', '{{ $user->dob }}', '{{ $user->gender }}', '{{ $user->email }}')" 
+                                            <button onclick="secureView({{ $user->id }}, '{{ $user->student_number }}', '{{ $user->name }}', '{{ $user->year_level }}', '{{ $user->dob }}', '{{ $user->gender }}', '{{ $user->email }}', '{{ $user->semester}}')" 
                                                     class="text-blue-600 hover:text-blue-800" title="View Student">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
@@ -106,15 +106,22 @@
     <!-- SweetAlert + JS Logic -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        const ADMIN_PASS = "00000000"; // 🔐 set master password
+        const ADMIN_PASS = "00000000"; // master password
 
         function askPassword(action, onSuccess) {
             Swal.fire({
-                title: `Enter Password to ${action}`,
+                title: `<h2 style="font-size:22px; font-weight:bold;">Enter Password to ${action}</h2>`,
                 input: 'password',
                 inputPlaceholder: 'Enter password',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                    style: 'font-size:18px; padding:10px;'
+                },
                 showCancelButton: true,
                 confirmButtonText: 'Continue',
+                cancelButtonText: 'Cancel',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
                 preConfirm: (pw) => {
                     if (pw !== ADMIN_PASS) Swal.showValidationMessage('❌ Incorrect password');
                     return pw;
@@ -126,32 +133,74 @@
             });
         }
 
-        function secureView(id, name, student_number, year_level, dob, gender, email) {
+        function secureView(id, student_number, name, year_level, dob, gender, email, semester) {
             askPassword("View", () => {
                 Swal.fire({
-                    title: "📖 Student Details",
+                    title: `<h2 style="font-size:22px; font-weight:bold; margin-bottom:15px;">Student Profile</h2>`,
                     html: `
-                        <div class="text-left">
-                            <p><b>Student Number:</b> ${student_number}</p>
-                            <p><b>Name:</b> ${name}</p>
-                            <p><b>Year Level:</b> ${year_level}</p>
-                            <p><b>Date of Birth:</b> ${dob}</p>
-                            <p><b>Gender:</b> ${gender}</p>
-                            <p><b>Email:</b> ${email}</p>
+                        <div style="text-align:left; font-size:16px; line-height:1.6;">
+                            <table style="width:100%; border-collapse: collapse; font-size:16px;">
+                                <tr>
+                                    <td style="padding:10px; font-weight:bold; width:40%;">Student Number:</td>
+                                    <td style="padding:10px;">${student_number}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Name:</td>
+                                    <td style="padding:10px;">${name}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:10px; font-weight:bold;">Gender:</td>
+                                    <td style="padding:10px;">${gender}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Year Level:</td>
+                                    <td style="padding:10px;">${year_level}</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:10px; font-weight:bold;">Date of Birth:</td>
+                                    <td style="padding:10px;">${dob}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Email:</td>
+                                    <td style="padding:10px;">${email}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Semester:</td>
+                                    <td style="padding:10px;">${semester}</td>
+                                </tr>
+                            </table>
                         </div>
                     `,
+                    width: 700, // bigger modal
+                    padding: "2rem",
                     confirmButtonText: "Close",
-                    width: 500
+                    confirmButtonColor: "#2563eb", // Tailwind blue-600
                 });
             });
         }
 
         function secureEdit(url) {
-            askPassword("Edit", () => window.location.href = url);
+            askPassword("Edit", () => {
+                window.location.href = url;
+            });
         }
 
         function secureDelete(button) {
-            askPassword("Delete", () => button.closest("form").submit());
+            askPassword("Delete", () => {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "This action cannot be undone.",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#d33",
+                    cancelButtonColor: "#3085d6",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        button.closest("form").submit();
+                    }
+                });
+            });
         }
     </script>
 </x-admin-layout>

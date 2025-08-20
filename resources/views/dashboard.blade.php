@@ -7,59 +7,63 @@
 
     <div class="py-6 px-4 space-y-6">
         <!-- Welcome Box -->
-        <div class="bg-gradient-to-r from-blue-100 to-blue-50 border border-blue-200 shadow-sm sm:rounded-lg p-6">
-            <h3 class="text-2xl font-bold text-blue-900">Welcome, {{ Auth::user()->name }}! 🎉</h3>
-            <p class="mt-2 text-blue-800 text-sm">You are now logged into your personalized student portal.</p>
+        <div class="bg-gradient-to-r from-slate-800 to-slate-700 shadow-md rounded-xl p-6 mb-6">
+            <h3 class="text-2xl font-bold text-white">
+                Welcome, {{ Auth::user()->name }}! 🎉
+            </h3>
+            <p class="mt-2 text-slate-300 text-sm">
+                You are now logged into your personalized student portal.
+            </p>
         </div>
 
         <!-- Profile Card -->
         <div class="bg-white shadow-lg rounded-xl p-6">
-            <h4 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">👤 Student Profile</h4>
+            <h4 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">{{ Auth::user()->name }}</h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div class="flex flex-col">
-                    <span class="text-sm text-gray-600">📛 Full Name</span>
+                    <span class="text-sm text-gray-600">Full Name</span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->name }}</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-sm text-gray-600">🆔 Student Number</span>
+                    <span class="text-sm text-gray-600">Student Number</span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->student_number }}</span>
                 </div>
                 <div class="flex flex-col">
                     <span class="text-sm text-gray-600">
-                        @if(Auth::user()->gender === 'Male') ♂️ @elseif(Auth::user()->gender === 'Female') ♀️ @endif Gender
+                        @if(Auth::user()->gender === 'Male') @elseif(Auth::user()->gender === 'Female')@endif Gender
                     </span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->gender }}</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-sm text-gray-600">📅  Date Of Birth</span>
+                    <span class="text-sm text-gray-600">Date Of Birth</span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->dob }}</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-sm text-gray-600">🏠 Adress</span>
+                    <span class="text-sm text-gray-600">Adress</span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->address }}</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-sm text-gray-600">☎️  Phone Number</span>
+                    <span class="text-sm text-gray-600">Phone Number</span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->phone }}</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-sm text-gray-600">📧 Email Address</span>
+                    <span class="text-sm text-gray-600">Email Address</span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->email }}</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-sm text-gray-600">📚 Courses/Strand</span>
+                    <span class="text-sm text-gray-600">Courses/Strand</span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->program }}</span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-sm text-gray-600">📚 Year Level</span>
+                    <span class="text-sm text-gray-600">Year Level</span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->year_level }} {{ Auth::user()->semester }} </span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-sm text-gray-600">📚 Section</span>
+                    <span class="text-sm text-gray-600">Section</span>
                     <span class="text-lg font-medium text-gray-900">{{ Auth::user()->section }}</span>
                 </div>
                 <div class="flex flex-col">
-                <span class="text-sm text-gray-600">🗓️ Class Schedule</span>
+                <span class="text-sm text-gray-600">Class Schedule</span>
                 <span class="text-lg font-medium text-gray-900">{{ Auth::user()->schedule }}</span>
                 </div>
             </div>
@@ -68,7 +72,7 @@
 
     <!-- Subjects Table -->
 <div class="bg-white shadow-lg rounded-xl p-6 mt-6">
-    <h4 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">📘 Enrolled Subjects</h4>
+    <h4 class="text-lg font-semibold text-gray-800 mb-4 border-b pb-2">Enrolled Subjects</h4>
 
     <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">

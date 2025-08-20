@@ -6,6 +6,10 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentConcernController;
 use App\Http\Controllers\Auth\LoginOtpController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\StudentSummaryController;
+
+
 
 
 
@@ -143,6 +147,35 @@ Route::post('/admin/otp-check', [LoginController::class, 'verifyOtp'])->name('ad
 //VIEW STUDENTS
 // View student details
 Route::get('/admin/students/{id}', [StudentController::class, 'show'])->name('admin.students.show');
+
+
+//Transaction 
+
+Route::get('/admin/transactions/create', function () {
+    return view('admin.auth.transactions.create');
+})->name('admin.transactions.create');
+
+
+Route::post('/admin/transactions', function () {
+    // Logic to store transaction goes here
+})->name('admin.transactions.store');
+
+
+
+Route::get('/admin/transactions', [TransactionController::class, 'index'])
+    ->name('admin.transactions');
+
+Route::get('/admin/transactions/{id}', [TransactionController::class, 'show'])
+    ->name('admin.transactions.show');
+
+Route::get('/admin/transactions', [TransactionController::class, 'index'])->name('admin.transactions');
+
+//download to pdf 
+
+
+
+Route::get('/admin/students/{id}/summary/pdf', [StudentController::class, 'downloadPdf'])
+    ->name('admin.student.summary.pdf');
 
 
 

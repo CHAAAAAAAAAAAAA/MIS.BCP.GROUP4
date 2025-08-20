@@ -100,6 +100,8 @@ class User extends Authenticatable
         return "s{$date}-{$randomDigits}";
     }
 
-
-    
+    public function transactions()
+    {
+        return $this->hasMany(\App\Models\Transaction::class);
+    }
 }
