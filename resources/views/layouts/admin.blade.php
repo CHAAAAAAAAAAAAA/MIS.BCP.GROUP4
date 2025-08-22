@@ -259,7 +259,7 @@
                         href="{{ route('admin.transactions') }}"
                         :class="darkMode ? 'hover:bg-gray-700 text-gray-300' : 'hover:bg-gray-100 text-gray-800'"
                         class="block px-4 py-2 rounded-lg transition"
-                        >Transaction</a
+                        >Account Statement</a
                     >
                     <a
                         href="{{ route('admin.dashboard') }}"

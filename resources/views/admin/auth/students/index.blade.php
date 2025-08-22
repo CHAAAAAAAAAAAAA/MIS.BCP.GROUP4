@@ -62,7 +62,7 @@
                                         <!-- Action Buttons -->
                                         <td class="px-3 py-2 text-center flex items-center justify-center gap-2">
                                             <!-- View -->
-                                            <button onclick="secureView('{{ $user->id }}', '{{ $user->student_number }}', '{{ $user->name }}', '{{ $user->year_level }}', '{{ \Carbon\Carbon::parse($user->dob)->format('F j, Y') }}', '{{ $user->gender }}', '{{ $user->email }}', '{{ $user->semester }}')" 
+                                            <button onclick="secureView('{{ $user->id }}', '{{ $user->student_number }}', '{{ $user->phone }}', '{{ $user->address }}', '{{ $user->name }}', '{{ $user->year_level }}', '{{ \Carbon\Carbon::parse($user->dob)->format('F j, Y') }}', '{{ $user->gender }}', '{{ $user->email }}', '{{ $user->semester }}', '{{ $user->section}}', '{{ $user->schedule}}')" 
                                                     class="text-blue-600 hover:text-blue-800" title="View Student">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
@@ -133,7 +133,7 @@
             });
         }
 
-        function secureView(id, student_number, name, year_level, dob, gender, email, semester) {
+        function secureView(id, student_number, name,phone, address,year_level, dob, gender, email, semester, section, schedule) {
             askPassword("View", () => {
                 Swal.fire({
                     title: `<h2 style="font-size:22px; font-weight:bold; margin-bottom:15px;">Student Profile</h2>`,
@@ -147,6 +147,15 @@
                                 <tr style="background:#f9fafb;">
                                     <td style="padding:10px; font-weight:bold;">Name:</td>
                                     <td style="padding:10px;">${name}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Phone Number:</td>
+                                    <td style="padding:10px;">${phone}</td>
+                                </tr>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Address:</td>
+                                    <td style="padding:10px;">${address}</td>
                                 </tr>
                                 <tr>
                                     <td style="padding:10px; font-weight:bold;">Gender:</td>
@@ -167,6 +176,14 @@
                                 <tr style="background:#f9fafb;">
                                     <td style="padding:10px; font-weight:bold;">Semester:</td>
                                     <td style="padding:10px;">${semester}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Section:</td>
+                                    <td style="padding:10px;">${section}</td>
+                                </tr>
+                                <tr style="background:#f9fafb;">
+                                    <td style="padding:10px; font-weight:bold;">Schedule:</td>
+                                    <td style="padding:10px;">${schedule}</td>
                                 </tr>
                             </table>
                         </div>

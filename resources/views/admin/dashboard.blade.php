@@ -116,7 +116,9 @@
         </script>
     @endpush
 
-    {{-- 🔹 User List --}}
+
+{{-- 
+    🔹 User List
     <div class="overflow-x-auto mt-10">
         <div class="bg-white shadow-md rounded-lg border border-gray-200">
             <h3 class="text-lg font-semibold text-gray-800 px-6 py-4 border-b">
@@ -159,4 +161,6 @@
             @endforeach
         </div>
     </div>
+--}}
+
 </x-admin-layout>
